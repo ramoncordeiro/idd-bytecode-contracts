@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
-import { StrSlice, toSlice } from "@dk1a/solidity-stringutils/src/StrSlice.sol";
+//import { StrSlice, toSlice } from "@dk1a/solidity-stringutils/src/StrSlice.sol";
+import { StrSlice, toSlice } from "@dk1a/src/StrSlice.sol";
 
 using { toSlice } for string;
 

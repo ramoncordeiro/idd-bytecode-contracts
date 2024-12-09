@@ -10,7 +10,8 @@ import { RoleControlInterface } from "../auth/RoleControl.sol";
 import { DidUtils } from "../did/DidUtils.sol";
 
 import { Base58 } from "../utils/Base58.sol";
-import { toSlice, isEmpty } from "@dk1a/solidity-stringutils/src/StrSlice.sol";
+//import { toSlice, isEmpty } from "@dk1a/solidity-stringutils/src/StrSlice.sol";
+import { toSlice, isEmpty } from "@dk1a/src/StrSlice.sol";
 
 using { toSlice } for string;
 

@@ -1,0 +1,2 @@
+@dk1a=lib/solidity-stringutils/
+@openzeppelin=lib/openzeppelin-contracts/
