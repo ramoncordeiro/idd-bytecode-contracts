@@ -12,3 +12,13 @@ docs/
 
 # Dotenv file
 .env
+
+# Reports
+IndyDidRegistry.json
+IndyDidRegistry.md
+RevocationRegistry.json
+revocationRegistry.md
+SchemaRegistry.json
+SchemaRegistry.md
+CredentialDefinitionRegistry.json
+CredentialDefinitionRegistry.md

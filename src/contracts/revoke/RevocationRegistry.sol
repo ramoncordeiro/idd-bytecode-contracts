@@ -226,6 +226,7 @@ contract RevocationRegistry is RevocationRegistryInterface, ControlledUpgradeabl
      * Revok Credential functions:
      */
 
+    // @audit Check in POC if it is possible to make an reentrancy Here. Maybe it is possible
     function _revokeCredential(
         address identity,
         address actor,
@@ -236,7 +237,7 @@ contract RevocationRegistry is RevocationRegistryInterface, ControlledUpgradeabl
         _checkIssuer(RevokId)
     {
         _revReg[RevokId].metadata.status = Status.revoked;
-        _revReg[RevokId].metadata.updated = block.timestamp;
+        _revReg[RevokId].metadata.updated = block.timestamp; //@audit check if it is possible to attack timestamp
 
         ///credential revocation event
         emit CredentialRevoked(msg.sender, RevokId);
@@ -265,7 +266,6 @@ contract RevocationRegistry is RevocationRegistryInterface, ControlledUpgradeabl
     /**
      * Unrevoke Credential functions:
      */
-
     function _UnrevokedCredential(
         address identity,
         address actor,

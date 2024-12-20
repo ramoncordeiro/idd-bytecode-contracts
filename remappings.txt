@@ -1,2 +1,3 @@
 @dk1a=lib/solidity-stringutils/
 @openzeppelin=lib/openzeppelin-contracts/
+ethr-did-registry/=lib/ethr-did-registry/

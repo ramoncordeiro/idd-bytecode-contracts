@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import { ControlledUpgradeable } from "../upgrade/ControlledUpgradeable.sol";
 
+/// @audit analyise if this import and file DiDErros does not have vuln.
 import { DidAlreadyExist, DidHasBeenDeactivated, DidNotFound, NotIdentityOwner } from "./DidErrors.sol";
 import { DidRecord } from "./DidTypes.sol";
 import { IndyDidRegistryInterface } from "./IndyDidRegistryInterface.sol";
@@ -45,6 +46,7 @@ contract IndyDidRegistry is IndyDidRegistryInterface, ControlledUpgradeable {
     /**
      * Checks that method was called either by Trustee or Endorser or Steward
      */
+     //@audit ANALYSE AND MAKE PROOF OF CONCEPT HERE.
     modifier _senderIsTrusteeOrEndorserOrSteward() {
         _roleControl.isTrusteeOrEndorserOrSteward(msg.sender);
         _;
@@ -53,6 +55,7 @@ contract IndyDidRegistry is IndyDidRegistryInterface, ControlledUpgradeable {
     /**
      * Checks that method was called either by Identity owner or Trustee or Endorser or Steward
      */
+     // @audit access controls. It need to be verifier with POC
     modifier _senderIsIdentityOwnerOrTrustee(address identity) {
         if (msg.sender == identity) {
             _;
@@ -75,6 +78,7 @@ contract IndyDidRegistry is IndyDidRegistryInterface, ControlledUpgradeable {
         _roleControl = RoleControlInterface(roleControlContractAddress);
     }
 
+    // @audit ANYONE CAN CALL THIS METHOD createDid?
     /// @inheritdoc IndyDidRegistryInterface
     function createDid(address identity, bytes calldata document) public {
         _createDid(identity, msg.sender, document);
@@ -88,6 +92,7 @@ contract IndyDidRegistry is IndyDidRegistryInterface, ControlledUpgradeable {
         _createDid(identity, ecrecover(hash, sigV, sigR, sigS), document);
     }
 
+    // ANYONE CAN CALL THIS updateDid?
     /// @inheritdoc IndyDidRegistryInterface
     function updateDid(address identity, bytes calldata document) public {
         _updateDid(identity, msg.sender, document);
